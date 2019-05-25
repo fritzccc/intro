@@ -1,34 +1,39 @@
 import React from 'react';
-import MobileMenu from '../Menu';
-const Navbar = (props) => {
-  return (
-    <nav className="navbar navbar-expand-sm fixed-top align-items-end px-4">
-      <div className="navbar-brand mr-auto">
-        <div className="site-title">
-          FANGJIAN
-          <span className="pl-2">CHEN</span>
-        </div>
-      </div>
+import Menu from '../Menu';
+import MobileMenu from '../MobileMenu';
 
-      <MobileMenu />
-      <div className="d-none d-sm-block">
-        <ul className="navbar-nav">
-          <li className="nav-item active">
-            <span className="nav-link">Home</span>
-          </li>
-          <li className="nav-item">
-            <span className="nav-link">Experiences</span>
-          </li>
-          <li className="nav-item">
-            <span className="nav-link">About</span>
-          </li>
-          <li className="nav-item">
-            <span className="nav-link">Contract</span>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  )
+const menus = ["Menu 1", "Menu 2", "Menu 3", "Menu 4"]
+
+class Navbar extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      menuExpanded: false
+    }
+  }
+
+  toggleMenu = (e) => {
+    e.preventDefault();
+    this.setState({ menuExpanded: !this.state.menuExpanded })
+  }
+
+  render() {
+    const { menuExpanded } = this.state
+
+    return (
+      <nav className="navbar navbar-expand-sm fixed-top align-items-end px-4">
+        <Menu menus={menus} />
+        <MobileMenu menus={menus} menuExpanded={menuExpanded} toggleMenu={this.toggleMenu} />
+
+        <div className="navbar-brand ml-auto">
+          <div className="site-title">
+            FANGJIAN
+          <span className="pl-2">CHEN</span>
+          </div>
+        </div>
+      </nav>
+    )
+  }
 }
 
 export default Navbar;

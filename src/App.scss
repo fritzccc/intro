@@ -1,5 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
 
+$main-text-color:#49515d;
 body {
   position: relative;
   font-family: 'Roboto', Helvetica, sans-serif;
@@ -22,7 +23,7 @@ body {
 
 .navbar {
   .site-title {
-    color: #49515d;
+    color: $main-text-color;
     font-size: 20px;
     font-weight: 500;
     font-family: 'Montserrat', Helvetica, sans-serif;
@@ -36,132 +37,161 @@ body {
 }
 
 // mobile menu
-.mobile-menu {
-  display: flex;
-  list-style-type: none;
-  text-align: right;
-  margin: 0;
-  padding-left: 1em;
-  cursor: pointer;
-  position: relative;
-  width: 30px;
-  height: 50px;
-  text-align: right;
+#mobile-menu {
+  $itemHeight: 50px;
+
+  $bgColor: #FF5252;
+  $bgColor2: #FF1744;
+
+  //Currently 10 colors, add more if you have over 10 menu items
+  $menuColor: #E0F7FA #B2EBF2 #80DEEA #4DD0E1 #26C6DA #00BCD4 #00ACC1 #0097A7 #00838F #006064;
+
+  $top-font: 'Montserrat', sans-serif;
+  $mid-font: 'Lato', sans-serif;
+
+  @mixin transition($obj, $dur, $del, $obj2, $dur2, $del2) {
+    -webkit-transition: $obj $dur $del, $obj2 $dur2 $del2;
+    transition: $obj $dur $del, $obj2 $dur2 $del2;
+  }
+
 
   span {
     display: inline-block;
-    vertical-align: middle;
-    color: white;
   }
 
-  a {
-    color: #FFF;
+  ul {
+    display: block;
+    list-style-type: none;
+    text-align: right;
+  }
 
-    &:hover {
-      opacity: 0.7;
-    }
+
+  .menu {
+    position: relative;
+    margin: 0;
+    padding-left: 1.25em;
+    cursor: pointer;
+    width: 30px;
+    height: 36px;
+    text-align: right;
+  }
+
+  /*A simple overlay that registers the menu click*/
+  /*needed because of e.stopPropagation(); blocking the menu-global click function*/
+  .click-blocker {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
   }
 
   .menu-close {
     font-size: 0em;
     opacity: 0;
-    text-align: center;
     font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
 
-    -webkit-transition: 0.2s;
-    transition: 0.2s;
+    @include transition(all, 0.2s, 0s, null, null, null);
   }
 
   .menu-close-visible {
     font-size: 2em;
     opacity: 1;
 
-    -webkit-transition: 0.2s 0.4s;
-    transition: 0.2s 0.4s;
+    @include transition(all, 0.2s, 0.4s, null, null, null);
+
   }
 
   .menu-global {
-    z-index: -1;
     position: absolute;
     left: 0;
-    height: 6px;
+    height: 4px;
     width: 100%;
-    background-color: #FFE082;
+    background-color: $main-text-color;
 
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transition: 0.2s;
-    transition: 0.2s;
-  }
-
-  .menu-global:hover {
-    left: 10px;
-    -webkit-transition: all 0.2s;
-    transition: all 0.2s;
+    @include transition(all, 0.2s, 0s, null, null, null);
   }
 
   .menu-top {
-    top: 10px;
+    top: 8px;
   }
 
   .menu-middle {
-    top: 22px;
+    top: 16px;
   }
 
-  .menu-bottom {
-    top: 34px;
+  .menu-bottom,
+  .menu-hidden {
+    top: 24px;
   }
 
   .menu-text {
+    color: #000;
     opacity: 0;
     font-size: 0em;
     padding: 10px 0;
-    -webkit-transition: 0.1s;
-    transition: 0.1s;
+    @include transition(all, 0.1s, 0s, null, null, null);
   }
 
   .expand {
     box-shadow: rgba(0, 0, 0, 0.1) -2.5px 5px 7.5px, rgba(0, 0, 0, 0.1) 2.5px 5px 7.5px;
     width: 200px;
-    height: 50px;
-
+    height: $itemHeight;
+    background: $menuColor(length($menuColor)); //set default as last color
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    @include transition(all, 0.5s, 0s, left, 0.1s, 0s);
+  }
+
+  .expand:hover {
+    left: 10px;
+    @include transition(all, 0.2s, 0s, null, null, null);
   }
 
   .menu-top-expand {
-    top: 50px;
-    background: #FFF8E1;
-
-    -webkit-transition: all 0.5s 0.2s, left 0.1s;
-    transition: all 0.5s 0.2s, left 0.1s;
+    top: $itemHeight;
+    background: nth($menuColor, 1);
+    @include transition(all, 0.5s, 0.4s, left, 0.1s, 0s);
   }
 
   .menu-middle-expand {
-    top: 100px;
-    background: #FFECB3;
-
-    -webkit-transition: all 0.5s 0.1s, left 0.1s;
-    transition: all 0.5s 0.1s, left 0.1s;
+    top: $itemHeight*2;
+    background: nth($menuColor, 2);
+    @include transition(all, 0.5s, 0.3s, left, 0.1s, 0s);
   }
 
   .menu-bottom-expand {
-    top: 150px;
-    height: 100px;
-    background: #FFE082;
-
-    -webkit-transition: all 0.5s, left 0.1s;
-    transition: all 0.5s, left 0.1s;
+    top: $itemHeight*3;
+    background: nth($menuColor, 3);
+    @include transition(all, 0.5s, 0.2s, left, 0.1s, 0s);
   }
 
   .menu-text-expand {
-    color: #000000;
-    opacity: 0.8;
+    opacity: 0.6;
     padding: 10px;
     font-size: 1.3em;
-    -webkit-transition: all 0.2s 0.7s, font-size 0.1s;
-    transition: all 0.2s 0.7s, font-size 0.1s;
+    @include transition(all, 0.2s, 0.7s, font-size, 0.1s, 0s);
   }
 
+  /******************ADDITIONAL MENU ITEMS*******************/
+  /***Will inherit transition w/out delay unless overriden***/
+  @for $i from 1 through length($menuColor) {
+    .menu-hidden-expand:nth-child(#{$i}) {
+      background: nth($menuColor, $i);
+      top: $itemHeight*$i;
+    }
+  }
 
+  .menu-hidden-expand:nth-child(4) {
+    @include transition(all, 0.5s, 0.1s, left, 0.1s, 0s);
+  }
+
+  .menu-hidden-expand:nth-last-of-type(1) {
+    height: $itemHeight*2;
+  }
+
+  /**************END ADDITIONAL MENU ITEMS*******************/
 }

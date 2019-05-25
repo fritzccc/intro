@@ -1,14 +1,17 @@
-import React from 'react';
+import React from 'react'
 
-const Menu = (props) => {
+export default ({ menus }) => {
+  const menuList = menus ? menus.map(menu =>
+    <li className="nav-item">
+      <span className="nav-link">{menu}</span>
+    </li>
+  ) : null;
+  
   return (
-    <ul className="mobile-menu d-sm-none">
-      <div className="menu-close fa fa-close"></div>
-      <li className="menu-global menu-top"><span className="menu-text">Home</span></li>
-      <li className="menu-global menu-middle"><span className="menu-text">About Me</span></li>
-      <li className="menu-global menu-bottom"><span className="menu-text">My Giraffes</span></li>
-    </ul>
+    <div className="d-none d-sm-block">
+      <ul className="navbar-nav">
+        {menuList}
+      </ul>
+    </div>
   )
 }
-
-export default Menu;

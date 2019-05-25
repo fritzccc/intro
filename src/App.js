@@ -1,8 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
 import Navbar from './components/Navbar'
-import Menu from './components/Menu'
 import './App.scss';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faTimes)
 
 
 function App() {
