@@ -18,22 +18,24 @@ class Navbar extends React.Component {
     this.setState({ menuExpanded: !this.state.menuExpanded })
   }
 
-  onMenuChange = e => {
-    this.setState({ activatedMenu: e.currentTarget.value })
+  onMenuChange = menu => {
+    this.setState({ activatedMenu: menu })
   }
 
   render() {
     const { menuExpanded, activatedMenu } = this.state
     const { toggleMenu, onMenuChange } = this;
     return (
-      <nav className="navbar navbar-expand-sm fixed-top align-items-end px-4">
+      <nav className="container navbar navbar-expand-sm fixed-top align-items-end px-4">
         <Menu menus={menus} onMenuChange={onMenuChange} activatedMenu={activatedMenu} />
-        <MobileMenu menus={menus} menuExpanded={menuExpanded} toggleMenu={toggleMenu} />
+        <MobileMenu menus={menus} onMenuChange={onMenuChange} menuExpanded={menuExpanded} toggleMenu={toggleMenu} />
 
-        <div className="navbar-brand ml-auto">
+        <div className="navbar-brand ml-auto mx-0">
           <div className="site-title">
             FANGJIAN
-          <span className="pl-2">CHEN</span>
+            <span className="pl-2 last-name">
+              {[..."CHEN"].map(letter => <span>{letter}</span>)}
+            </span>
           </div>
         </div>
       </nav>
