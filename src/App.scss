@@ -42,6 +42,10 @@ body {
 // desktop menu
 #desktop-menu {
   .nav-item {
+    &.active .nav-link:after {
+      width: 30px;
+    }
+
     .nav-link {
       cursor: pointer;
       display: block;
