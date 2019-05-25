@@ -1,7 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 
 $main-text-color:#49515d;
-$main-color:#2196F3;
+$main-color:#6baed6;
 
 body {
   position: relative;
@@ -34,6 +34,7 @@ body {
   }
 
   .site-title span {
+    font-weight: bold;
     color: $main-color;
   }
 }
@@ -58,7 +59,8 @@ body {
 
       &:hover {
         opacity: 1;
-        &:after{
+
+        &:after {
           width: 30px;
         }
       }
@@ -87,13 +89,7 @@ body {
 // mobile menu
 #mobile-menu {
   $itemHeight: 50px;
-
-  $bgColor: #FF5252;
-  $bgColor2: #FF1744;
-
-  //Currently 10 colors, add more if you have over 10 menu items
-  $menuColor: #E0F7FA #B2EBF2 #80DEEA #4DD0E1 #26C6DA #00BCD4 #00ACC1 #0097A7 #00838F #006064;
-
+  $menuColor: #f7fbff #d1e5f0 #92c5de #6baed6;
   $top-font: 'Montserrat', sans-serif;
   $mid-font: 'Lato', sans-serif;
 
@@ -101,7 +97,6 @@ body {
     -webkit-transition: $obj $dur $del, $obj2 $dur2 $del2;
     transition: $obj $dur $del, $obj2 $dur2 $del2;
   }
-
 
   span {
     display: inline-block;
