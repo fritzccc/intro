@@ -30,17 +30,18 @@ body {
     font-weight: 500;
     font-family: 'Montserrat', Helvetica, sans-serif;
     line-height: 1;
-    margin: 38px 0 0;
   }
 
   .site-title .last-name {
     font-weight: bold;
     color: $main-color;
-    span{
+
+    span {
       display: inline-block;
       transition: transform 0.3s;
-      &:hover{
-        transform:translateY(-10px) rotate(15deg) scale(1.2) !important;
+
+      &:hover {
+        transform: translateY(-10px) rotate(15deg) scale(1.2) !important;
       }
     }
   }
@@ -49,8 +50,10 @@ body {
 // desktop menu
 #desktop-menu {
   .nav-item {
-    &.active .nav-link{
+    &.active .nav-link {
+      font-weight: bold;
       opacity: 1;
+
       &:after {
         width: 30px;
       }
@@ -168,7 +171,7 @@ body {
     height: 4px;
     width: 100%;
     background-color: $main-text-color;
-
+    z-index: 9999;
     @include transition(all, 0.2s, 0s, null, null, null);
   }
 
@@ -250,5 +253,14 @@ body {
     height: $itemHeight*2;
   }
 
-  /**************END ADDITIONAL MENU ITEMS*******************/
+}
+
+#content {
+  position: relative;
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 15px;
+  -webkit-box-shadow: 0px 15px 25px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 15px 25px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 15px 25px 0px rgba(0, 0, 0, 0.1);
 }
