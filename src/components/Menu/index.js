@@ -8,7 +8,7 @@ export default ({ menus }) => {
   ) : null;
   
   return (
-    <div className="d-none d-sm-block">
+    <div id="desktop-menu" className="d-none d-sm-block">
       <ul className="navbar-nav">
         {menuList}
       </ul>

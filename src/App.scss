@@ -1,6 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
 
 $main-text-color:#49515d;
+$main-color:#2196F3;
+
 body {
   position: relative;
   font-family: 'Roboto', Helvetica, sans-serif;
@@ -32,7 +34,53 @@ body {
   }
 
   .site-title span {
-    color: #2196F3;
+    color: $main-color;
+  }
+}
+
+// desktop menu
+#desktop-menu {
+  .nav-item {
+    .nav-link {
+      cursor: pointer;
+      display: block;
+      position: relative;
+      padding: 8px 0;
+      margin: 0 16px;
+      text-align: center;
+      color: $main-text-color;
+      font-size: 15px;
+      line-height: 1;
+      font-weight: 400;
+      text-decoration: none;
+      outline: none;
+      opacity: 0.6;
+
+      &:hover {
+        opacity: 1;
+        &:after{
+          width: 30px;
+        }
+      }
+
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        margin: 0 auto;
+        background-color: $main-color;
+        -webkit-transition: all 0.15s ease-in-out;
+        -moz-transition: all 0.15s ease-in-out;
+        -o-transition: all 0.15s ease-in-out;
+        -ms-transition: all 0.15s ease-in-out;
+        transition: all 0.15s ease-in-out;
+      }
+    }
   }
 }
 
