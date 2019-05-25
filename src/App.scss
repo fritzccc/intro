@@ -42,8 +42,11 @@ body {
 // desktop menu
 #desktop-menu {
   .nav-item {
-    &.active .nav-link:after {
-      width: 30px;
+    &.active .nav-link{
+      opacity: 1;
+      &:after {
+        width: 30px;
+      }
     }
 
     .nav-link {
