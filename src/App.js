@@ -4,6 +4,7 @@ import './App.scss';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import classNames from 'classnames'
+import Content from './components/Content'
 
 library.add(faTimes)
 
@@ -38,7 +39,7 @@ class App extends React.Component {
     return (
       <div>
         <Navbar headerClass={headerClass} />
-        <div className={contentClass}></div>
+        <Content contentClass={contentClass} />
       </div>
     );
   }
