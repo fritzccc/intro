@@ -23,7 +23,28 @@ body {
   background-repeat: no-repeat;
 }
 
+.container.container-padding{
+  padding-top: 135px !important;
+}
+
 .navbar {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  &.stick-to-top {
+    position: fixed !important;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    background-color: #fefefe !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    box-shadow: 0 0.125rem 0.5rem 0 rgba(0, 0, 0, 0.15) !important;
+  }
+
   .site-title {
     color: $main-text-color;
     font-size: 20px;
@@ -136,14 +157,13 @@ body {
     text-align: right;
   }
 
-  /*A simple overlay that registers the menu click*/
-  /*needed because of e.stopPropagation(); blocking the menu-global click function*/
   .click-blocker {
     width: 100%;
     height: 100%;
     position: absolute;
     left: 0;
     top: 0;
+    z-index: 10;
   }
 
   .menu-close {
@@ -171,7 +191,7 @@ body {
     height: 4px;
     width: 100%;
     background-color: $main-text-color;
-    z-index: 9999;
+    z-index: 9;
     @include transition(all, 0.2s, 0s, null, null, null);
   }
 
@@ -200,15 +220,22 @@ body {
     box-shadow: rgba(0, 0, 0, 0.1) -2.5px 5px 7.5px, rgba(0, 0, 0, 0.1) 2.5px 5px 7.5px;
     width: 200px;
     height: $itemHeight;
-    background: $menuColor(length($menuColor)); //set default as last color
+    background: $menuColor(length($menuColor));
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     @include transition(all, 0.5s, 0s, left, 0.1s, 0s);
-  }
 
-  .expand:hover {
-    left: 10px;
-    @include transition(all, 0.2s, 0s, null, null, null);
+    &.active {
+      span:before {
+        content: '>';
+        padding-right: 10px;
+      }
+    }
+
+    &:hover {
+      left: 10px;
+      @include transition(all, 0.2s, 0s, null, null, null);
+    }
   }
 
   .menu-top-expand {
@@ -236,8 +263,6 @@ body {
     @include transition(all, 0.2s, 0.7s, font-size, 0.1s, 0s);
   }
 
-  /******************ADDITIONAL MENU ITEMS*******************/
-  /***Will inherit transition w/out delay unless overriden***/
   @for $i from 1 through length($menuColor) {
     .menu-hidden-expand:nth-child(#{$i}) {
       background: nth($menuColor, $i);

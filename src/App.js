@@ -3,16 +3,45 @@ import Navbar from './components/Navbar'
 import './App.scss';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import classNames from 'classnames'
 
 library.add(faTimes)
 
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      headerClass: 'navbar navbar-expand-md py-5',
+      contentClass: 'container'
+    }
+  }
+  componentDidMount() {
+    window.onscroll = () => this.onWindowScrolled()
+  }
+  onWindowScrolled = () => {
+    const sticky = window.scrollY > 30;
+    this.setState({
+      headerClass: classNames(
+        'navbar', 'navbar-expand-md',
+        { 'py-5': !sticky },
+        { 'stick-to-top': sticky }
+      ),
+      contentClass: classNames(
+        'container',
+        { 'container-padding': sticky }
+      )
+    })
+  }
 
-function App() {
-  return (
-    <div className="container">
-      <Navbar />
-    </div>
-  );
+  render() {
+    const { headerClass, contentClass } = this.state;
+    return (
+      <div>
+        <Navbar headerClass={headerClass} />
+        <div className={contentClass}></div>
+      </div>
+    );
+  }
 }
 
 export default App;

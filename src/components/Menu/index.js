@@ -9,7 +9,7 @@ const Menu = ({ menus, activatedMenu, onMenuChange }) => {
   ) : null;
 
   return (
-    <div id="desktop-menu" className="d-none d-sm-block">
+    <div id="desktop-menu" className="d-none d-md-block">
       <ul className="navbar-nav">
         {menuList}
       </ul>

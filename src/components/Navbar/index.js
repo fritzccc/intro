@@ -18,24 +18,29 @@ class Navbar extends React.Component {
     this.setState({ menuExpanded: !this.state.menuExpanded })
   }
 
-  onMenuChange = menu => {
-    this.setState({ activatedMenu: menu })
+  onMenuChange = (menu, mobileMenuEvent = undefined) => {
+    mobileMenuEvent && mobileMenuEvent.stopPropagation();
+    if (!mobileMenuEvent || (mobileMenuEvent && this.state.menuExpanded)) {
+      this.setState({ activatedMenu: menu })
+      this.setState({ menuExpanded: false })
+    }
   }
 
   render() {
+    const { headerClass } = this.props;
     const { menuExpanded, activatedMenu } = this.state
     const { toggleMenu, onMenuChange } = this;
     return (
-      <nav id="header" className="navbar navbar-expand-md py-5 flex-fill">
+      <nav id="header" className={headerClass}>
         <div className="container d-flex">
           <Menu menus={menus} onMenuChange={onMenuChange} activatedMenu={activatedMenu} />
-          <MobileMenu menus={menus} onMenuChange={onMenuChange} menuExpanded={menuExpanded} toggleMenu={toggleMenu} />
+          <MobileMenu menus={menus} onMenuChange={onMenuChange} activatedMenu={activatedMenu} menuExpanded={menuExpanded} toggleMenu={toggleMenu} />
 
           <div className="navbar-brand ml-auto mx-0">
             <div className="site-title">
               FANGJIAN
               <span className="pl-2 last-name">
-                {[..."CHEN"].map(letter => <span>{letter}</span>)}
+                {[..."CHEN"].map(letter => <span key={letter}>{letter}</span>)}
               </span>
             </div>
           </div>
