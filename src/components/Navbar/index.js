@@ -1,6 +1,6 @@
 import React from 'react';
-import Menu from '../Menu';
-import MobileMenu from '../MobileMenu';
+import Menu from './Menu';
+import MobileMenu from './MobileMenu';
 
 const menus = ["Menu 1", "Menu 2", "Menu 3", "Menu 4"]
 

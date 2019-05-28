@@ -6,8 +6,7 @@ const MobileMenu = ({ menus, toggleMenu, menuExpanded, onMenuChange, activatedMe
   const menuList = menus ? menus.map((menu, index) => {
     const pos = index === 0 ? "top" : index === 1 ? "middle" : index === 2 ? "bottom" : "hidden";
     const menuClass = classNames(
-      'menu-global',
-      `menu-${pos}`,
+      'menu-global', `menu-${pos}`,
       { [`menu-${pos}-expand expand active`]: menuExpanded && activatedMenu === menu },
       { [`menu-${pos}-expand expand`]: menuExpanded && activatedMenu !== menu }
     );
