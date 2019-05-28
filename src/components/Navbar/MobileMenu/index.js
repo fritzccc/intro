@@ -2,9 +2,9 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
+import { setMenu, toggleMenu } from '../../../actions/config.action';
 
-const MobileMenu = (props) => {
-  const { menus, toggleMenu, menuExpanded, onMenuChange, activatedMenu } = props
+const MobileMenu = ({ menus, menuExpanded, activatedMenu, setMenu,toggleMenu }) => {
   const menuList = menus ? menus.map((menu, index) => {
     const pos = index === 0 ? "top" : index === 1 ? "middle" : index === 2 ? "bottom" : "hidden";
     const menuClass = classNames(
@@ -18,7 +18,7 @@ const MobileMenu = (props) => {
     );
 
     return (
-      <li key={index} onClick={e => onMenuChange(menu, e)} className={menuClass}>
+      <li key={index} onClick={() => setMenu(menu)} className={menuClass}>
         <span className={menuTextClass}>{menu}</span>
       </li>
     )
@@ -38,5 +38,9 @@ const MobileMenu = (props) => {
 }
 
 export default connect(
-  state => ({ config: state.config })
+  state => ({ ...state.config }),
+  dispatch => ({
+    toggleMenu: toggleMenu(dispatch),
+    setMenu: setMenu(dispatch)
+  })
 )(MobileMenu)

@@ -28,13 +28,11 @@ class Navbar extends React.Component {
 
   render() {
     const { headerClass } = this.props;
-    const { menuExpanded, activatedMenu } = this.state
-    const { toggleMenu, onMenuChange } = this;
     return (
       <nav id="header" className={headerClass}>
         <div className="container d-flex">
-          <Menu menus={menus} onMenuChange={onMenuChange} activatedMenu={activatedMenu} />
-          <MobileMenu menus={menus} onMenuChange={onMenuChange} activatedMenu={activatedMenu} menuExpanded={menuExpanded} toggleMenu={toggleMenu} />
+          <Menu />
+          <MobileMenu />
 
           <div className="navbar-brand ml-auto mx-0">
             <div className="site-title">
